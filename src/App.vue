@@ -54,7 +54,7 @@ export default {
   
   <Main />
   
-  <Footer />
+  <!-- <Footer /> -->
   
 </template>
 
