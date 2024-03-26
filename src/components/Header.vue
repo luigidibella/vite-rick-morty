@@ -1,13 +1,13 @@
 <script>
 import { store } from '../data/store'
+
 export default{
 
 data(){
   return{
     store,
   }
-}
-  
+},
   
 }
 </script>
@@ -18,6 +18,7 @@ data(){
       <img :src="store.logo" alt="">
       <!-- <h1 class="p-4">{{ store.mainTitle }}</h1> -->
       <form class="d-flex justify-content-between mb-5">
+        
         <input class="form-control mx-2" list="datalistOptions" id="exampleDataList" placeholder="Select Character"/>
 
         <select class="form-select mx-2" aria-label="Default select example">
