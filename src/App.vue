@@ -23,17 +23,17 @@ export default {
 
   methods: {
     getApi(){
+      this.store.cardList = [];
      /* console.log('GET API'); */ 
-     console.log(this.store.apiUrl); 
+     /* console.log(this.store.apiUrl); */ 
      axios.get(this.store.apiUrl, {
       params:this.store.queryParams
      })
      .then(result =>{
-      console.log(result.data.results);
-      console.log(result.data.info.pages);
+      /* console.log(result.data.results); */
       this.store.cardList = result.data.results;
+      /* console.log(result.data.info.pages); */
       this.store.pageInfo.totalPages = result.data.info.pages;
-      /* console.log(this.store.cardList[0].image); */
      })
      .catch(error => {
       console.log(error);
@@ -49,12 +49,14 @@ export default {
 </script>
 
 <template>
-  
+
   <Header />
+  
+  <Paginator @prossimaPagina="getApi" />
   
   <Main />
 
-  <Paginator />
+  <Paginator @prossimaPagina="getApi" />
   
   <!-- <Footer /> -->
   
