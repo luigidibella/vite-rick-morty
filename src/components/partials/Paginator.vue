@@ -9,16 +9,16 @@ export default {
   },
 
   methods: {
-    nextPage(){
-      store.pageInfo.counter++;
+    nextPage(isNext){
+      isNext ? store.pageInfo.counter++ : store.pageInfo.counter--;
       store.queryParams.page = store.pageInfo.counter;
-      console.log(store.queryParams);
+      /* console.log(store.queryParams); */
       this.$emit('prossimaPagina');
     }
   },
   
   mounted() {
-    console.log(store.pageInfo.counter);
+    /* console.log(store.pageInfo.counter); */
   },
 
   created() {
@@ -30,8 +30,8 @@ export default {
 <template>
   <div class="text-center my-5">
     Pagina {{ store.pageInfo.counter }} di {{ store.pageInfo.totalPages }} - 
-    <button v-if="store.pageInfo.counter > 0" class="btn btn-success mx-3">&#60;</button>
-    <button @click="nextPage" v-if="store.pageInfo.counter < store.pageInfo.totalPages" class="btn btn-success">&#62;</button>
+    <button @click="nextPage(false)" v-if="store.pageInfo.counter > 1" class="btn btn-success me-3">&#60;</button>
+    <button @click="nextPage(true)" v-if="store.pageInfo.counter < store.pageInfo.totalPages" class="btn btn-success">&#62;</button>
   </div>
 </template>
 

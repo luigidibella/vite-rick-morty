@@ -40,6 +40,8 @@ export default {
 }
 
 img {
+  min-width: 306px;
+  min-height: 306px;
   border: 3px solid black;
   border-radius: 50%;
   position: relative;
@@ -69,6 +71,7 @@ img:hover {
 }
 
 .info {
+  height: 150px;
   border: 3px solid black;
   background-color: #0bafc7;
   &:hover{

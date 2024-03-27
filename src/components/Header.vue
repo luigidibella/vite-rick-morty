@@ -19,7 +19,14 @@ data(){
       <!-- <h1 class="p-4">{{ store.mainTitle }}</h1> -->
       <form class="d-flex justify-content-between mb-5">
         
-        <input class="form-control mx-2" list="datalistOptions" id="exampleDataList" placeholder="Select Character"/>
+        <!-- <label for="exampleDataList" class="form-label">Datalist example</label> -->
+        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Select Character">
+        <datalist id="datalistOptions">
+          <option 
+            v-for="character in this.store.characterList" 
+            :key="character"
+            :value="character"/>
+        </datalist>
 
         <select class="form-select mx-2" aria-label="Default select example">
           <option selected>Select Status</option>
