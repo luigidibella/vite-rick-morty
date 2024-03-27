@@ -23,6 +23,7 @@ export default {
 
   methods: {
     getApi(){
+      this.store.errorString = '';
       this.store.cardList = [];
      /* console.log('GET API'); */ 
      /* console.log(this.store.apiUrl); */ 
@@ -37,6 +38,7 @@ export default {
      })
      .catch(error => {
       console.log(error);
+      this.store.errorString = 'Nessun risultato trovato'
      })
     },
 
@@ -85,11 +87,11 @@ export default {
 
   <Header @startSearch="getApi" />
   
-  <Paginator @prossimaPagina="getApi" />
+  <Paginator v-if="this.store.cardList.length > 0" @prossimaPagina="getApi" />
   
-  <Main />
+  <Main @ricarica="getApi" />
 
-  <Paginator @prossimaPagina="getApi" />
+  <Paginator v-if="this.store.cardList.length > 0" @prossimaPagina="getApi" />
   
   <!-- <Footer /> -->
   

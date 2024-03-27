@@ -15,9 +15,12 @@ methods: {
     /* console.log('ricerca'); */
     this.store.queryParams= {
       page: 1,
-      name: this.character,
+      /* name: this.character, */
     }
-    this.$emit('startSearch')
+    if(this.character.length > 0) this.store.queryParams.name = this.character;
+    this.store.pageInfo.counter = 1;
+    this.$emit('startSearch');
+    this.character = '';
   }
 },
   

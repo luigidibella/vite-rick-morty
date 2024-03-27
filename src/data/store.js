@@ -7,6 +7,7 @@ export const store = reactive({
   pageOneUrl: 'https://rickandmortyapi.com/api/character/?page=1',
   cardList: [],
   characterList:[],
+  errorString: '',
   pageInfo: {
     counter: 1,
     itemsPerPages: 20,

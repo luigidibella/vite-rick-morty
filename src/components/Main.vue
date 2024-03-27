@@ -15,6 +15,16 @@ data(){
   }
 },
 
+methods: {
+  resetApi(){
+    this.store.queryParams= {
+      page: 1,
+      
+    }
+    this.$emit('ricarica')
+  }
+},
+
 /* mounted(){
   console.log(this.store.cardList[0].image);
 } */
@@ -24,11 +34,12 @@ data(){
 
 <template>
   <main>
-    <div class="container py-3">
-      <div v-if="this.store.cardList.length === 0" class="d-flex justify-content-center align-items-center">
-        <Loader />
-      </div>
-      <div class="row row-col-4">
+    <div class="text-center container py-3">
+      <!-- SPAZIO -->
+      <div 
+        v-if="this.store.cardList.length > 0" 
+        class="row row-col-4"
+      >
         <MyCard 
         v-for="card in this.store.cardList"
         :key="card.id"
@@ -38,6 +49,22 @@ data(){
         :species="card.species"
         />
       </div>
+      <!-- SPAZIO -->
+      <div
+        v-else-if="this.store.errorString.length > 0" 
+        class="text-center"
+      >
+        <h4 class="my-2">{{ this.store.errorString }}</h4>
+        <button @click="resetApi" class="btn btn-success my-2">Ricarica tutti i Character</button>
+      </div>
+      <!-- SPAZIO -->
+      <div 
+        v-else
+        class="d-flex justify-content-center align-items-center"
+      >
+        <Loader />
+      </div>
+      <!-- SPAZIO -->
     </div>
   </main>
 </template>
