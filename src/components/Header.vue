@@ -6,6 +6,18 @@ export default{
 data(){
   return{
     store,
+    character: '',
+  }
+},
+
+methods: {
+  startSearch(){
+    /* console.log('ricerca'); */
+    this.store.queryParams= {
+      page: 1,
+      name: this.character,
+    }
+    this.$emit('startSearch')
   }
 },
   
@@ -14,18 +26,28 @@ data(){
 
 <template>
   <header>
-    <div class="container col-4 text-center">
+    <div class="container col-5 text-center">
       <img :src="store.logo" alt="">
       <!-- <h1 class="p-4">{{ store.mainTitle }}</h1> -->
-      <form class="d-flex justify-content-between mb-5">
+      <div class="d-flex justify-content-between mb-5">
         
         <!-- <label for="exampleDataList" class="form-label">Datalist example</label> -->
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Select Character">
+        <input
+          v-model.trim="character"
+          @keyup.enter="startSearch" 
+          id="exampleDataList" 
+          class="form-control" 
+          list="datalistOptions" 
+          placeholder="Select Character" 
+        >
         <datalist id="datalistOptions">
-          <option 
-            v-for="character in this.store.characterList" 
-            :key="character"
-            :value="character"/>
+          <option
+            v-for="(character, index) in this.store.characterList" 
+            :key="index"
+            :value="character"
+          >
+          
+          </option>
         </datalist>
 
         <select class="form-select mx-2" aria-label="Default select example">
@@ -39,7 +61,7 @@ data(){
 
         <button type="button" class="btn btn-danger mx-2">Reset</button>
 
-      </form>
+      </div>
     </div>
   </header>
 </template>

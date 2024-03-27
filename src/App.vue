@@ -25,7 +25,7 @@ export default {
     getApi(){
       this.store.cardList = [];
      /* console.log('GET API'); */ 
-     console.log(this.store.apiUrl); 
+     /* console.log(this.store.apiUrl); */ 
      axios.get(this.store.apiUrl, {
       params:this.store.queryParams
      })
@@ -47,9 +47,9 @@ export default {
       const loadNextPage = (url) => {
         axios.get(url)
           .then(res => {
-            console.log(url);
-            console.log(res.data.results);
-            console.log(res.data.info.count);
+            /* console.log(url); */
+            /* console.log(res.data.results); */
+            /* console.log(res.data.info.count); */
             
             // Aggiunge i nomi dei personaggi alla lista
             this.store.characterList.push(...res.data.results.map(item => item.name));
@@ -83,7 +83,7 @@ export default {
 
 <template>
 
-  <Header />
+  <Header @startSearch="getApi" />
   
   <Paginator @prossimaPagina="getApi" />
   
