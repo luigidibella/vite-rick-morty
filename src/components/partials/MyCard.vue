@@ -81,6 +81,7 @@ img:hover {
 .info {
   width: 100%;
   height: 150px;
+  max-width: 306px;
   border: 3px solid black;
   background-color: #0bafc7;
   &:hover{

@@ -7,6 +7,7 @@ data(){
   return{
     store,
     character: '',
+    selected: '',
   }
 },
 
@@ -18,10 +19,15 @@ methods: {
       /* name: this.character, */
     }
     if(this.character.length > 0) this.store.queryParams.name = this.character;
+    this.store.queryParams.status = this.selected;
     this.store.pageInfo.counter = 1;
     this.$emit('startSearch');
     this.character = '';
   }
+},
+
+mounted() {
+  /* console.log(); */
 },
   
 }
@@ -53,14 +59,18 @@ methods: {
           </option>
         </datalist>
 
-        <select class="form-select mx-2" aria-label="Default select example">
-          <option selected>Select Status</option>
-          <option value="1">Alive</option>
-          <option value="2">Dead</option>
-          <option value="3">Unknown</option>
+        <select 
+          v-model="selected"
+          class="form-select mx-2" 
+          aria-label="Default select example"
+        >
+          <option value="">Select Status</option>
+          <option>Alive</option>
+          <option>Dead</option>
+          <option>unknown</option>
         </select>
 
-        <button type="button" class="btn btn-success mx-2">Search</button>
+        <button @click="startSearch" type="button" class="btn btn-success mx-2">Search</button>
 
         <button type="button" class="btn btn-danger mx-2">Reset</button>
 
