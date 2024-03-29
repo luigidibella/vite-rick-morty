@@ -72,12 +72,40 @@ export default {
       
       // Inizia caricando la prima pagina
       loadNextPage(this.store.pageOneUrl);
-    }
+    },
+
+    getAllSpecies() {
+      this.store.speciesList = []; 
+      
+      const loadNextPage = (url) => {
+        axios.get(url)
+          .then(res => {
+            res.data.results.forEach(item => {
+              const species = item.species;
+              if (!this.store.speciesList.includes(species)) {
+                this.store.speciesList.push(species);
+              }
+            });
+            if (res.data.info.next) {
+              loadNextPage(res.data.info.next);
+            } else {
+              console.log("Tutte le specie sono state caricate:", this.store.speciesList);
+            }
+          })
+          .catch(error => {
+            console.error("Si è verificato un errore durante il caricamento della pagina:", error);
+          });
+      };
+      
+      loadNextPage(this.store.pageOneUrl);
+    },
+
   },
 
   mounted() {
     this.getApi(),
-    this.getAllCharacter()
+    this.getAllCharacter(),
+    this.getAllSpecies()
   },
   
 }

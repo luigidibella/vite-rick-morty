@@ -8,6 +8,7 @@ data(){
     store,
     character: '',
     selected: '',
+    species: '',
   }
 },
 
@@ -19,11 +20,13 @@ methods: {
       /* name: this.character, */
     }
     if(this.character.length > 0) this.store.queryParams.name = this.character;
+    if(this.species.length > 0) this.store.queryParams.species = this.species;
     this.store.queryParams.status = this.selected;
     this.store.pageInfo.counter = 1;
     this.$emit('startSearch');
     this.character = '';
     this.selected = '';
+    this.species = '';
   },
 
   resetSearch(){
@@ -31,6 +34,7 @@ methods: {
       page: 1,
       name: '',
       status: '',
+      species: '',
     }
     this.store.pageInfo.counter = 1;
     this.$emit('startSearch');
@@ -46,7 +50,7 @@ mounted() {
 
 <template>
   <header>
-    <div class="container col-5 text-center">
+    <div class="container text-center">
       <img :src="store.logo" alt="">
       <!-- <h1 class="p-4">{{ store.mainTitle }}</h1> -->
       <div class="d-flex justify-content-between mb-5">
@@ -56,7 +60,7 @@ mounted() {
           v-model.trim="character"
           @keyup.enter="startSearch" 
           id="exampleDataList" 
-          class="form-control" 
+          class="form-control mx-2" 
           list="datalistOptions" 
           placeholder="Select Character" 
         >
@@ -80,6 +84,26 @@ mounted() {
           <option>Dead</option>
           <option>unknown</option>
         </select>
+
+<!-- WORK IN PROGRESS -->
+        <input
+          v-model.trim="species"
+          @keyup.enter="startSearch" 
+          id="exampleDataList" 
+          class="form-control mx-2" 
+          list="datalistOptionsSpecies" 
+          placeholder="Select Species" 
+        >
+        <datalist id="datalistOptionsSpecies">
+          <option
+            v-for="(species, index) in this.store.speciesList" 
+            :key="index"
+            :value="species"
+          >
+          
+          </option>
+        </datalist>
+<!-- WORK IN PROGRESS -->
 
         <button @click="startSearch" type="button" class="btn btn-success mx-2">Search</button>
 
