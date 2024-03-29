@@ -51,7 +51,7 @@ mounted() {
 <template>
   <header>
     <div class="container text-center">
-      <img :src="store.logo" alt="">
+      <img :src="store.logo" alt="logo">
       <!-- <h1 class="p-4">{{ store.mainTitle }}</h1> -->
       <div class="d-flex justify-content-between mb-5">
         
@@ -76,6 +76,7 @@ mounted() {
 
         <select 
           v-model="selected"
+          id="exampleSelect"
           class="form-select mx-2" 
           aria-label="Default select example"
         >
@@ -89,7 +90,7 @@ mounted() {
         <input
           v-model.trim="species"
           @keyup.enter="startSearch" 
-          id="exampleDataList" 
+          id="exampleDataListSpecies" 
           class="form-control mx-2" 
           list="datalistOptionsSpecies" 
           placeholder="Select Species" 
