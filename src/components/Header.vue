@@ -53,14 +53,14 @@ mounted() {
     <div class="container text-center">
       <img :src="store.logo" alt="logo">
       <!-- <h1 class="p-4">{{ store.mainTitle }}</h1> -->
-      <div class="d-flex justify-content-between mb-5">
+      <div class="my-3 d-md-flex">
         
         <!-- <label for="exampleDataList" class="form-label">Datalist example</label> -->
         <input
           v-model.trim="character"
           @keyup.enter="startSearch" 
           id="exampleDataList" 
-          class="form-control mx-2" 
+          class="form-control my-3 me-2" 
           list="datalistOptions" 
           placeholder="Select Character" 
         >
@@ -77,7 +77,7 @@ mounted() {
         <select 
           v-model="selected"
           id="exampleSelect"
-          class="form-select mx-2" 
+          class="form-select my-3 me-2" 
           aria-label="Default select example"
         >
           <option value="">Select Status</option>
@@ -86,12 +86,11 @@ mounted() {
           <option>unknown</option>
         </select>
 
-<!-- WORK IN PROGRESS -->
         <input
           v-model.trim="species"
           @keyup.enter="startSearch" 
           id="exampleDataListSpecies" 
-          class="form-control mx-2" 
+          class="form-control my-3 me-2" 
           list="datalistOptionsSpecies" 
           placeholder="Select Species" 
         >
@@ -104,11 +103,12 @@ mounted() {
           
           </option>
         </datalist>
-<!-- WORK IN PROGRESS -->
 
-        <button @click="startSearch" type="button" class="btn btn-success mx-2">Search</button>
-
-        <button @click="resetSearch" type="button" class="btn btn-danger mx-2">Reset</button>
+        <div class="my-3 d-md-flex">
+          <button @click="startSearch" type="button" class="btn btn-success mx-2">Search</button>
+  
+          <button @click="resetSearch" type="button" class="btn btn-danger mx-2">Reset</button>
+        </div>
 
       </div>
     </div>
