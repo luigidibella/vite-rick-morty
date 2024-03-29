@@ -18,12 +18,12 @@ export default {
 </script>
 
 <template>
-  <div class="col text-center">
+  <div class="col my-flex-column-center">
     <div class="image-wrapper"></div>
     <img :src="image" :alt="name">
       
-    <div class="info my-4">
-      <h3>{{ name }}</h3>
+    <div class="info my-4 my-flex-column-center">
+      <h5 class="text-uppercase ">{{ name }}</h5>
       <h5>{{ status }}</h5>
       <h5>{{ species }}</h5>
     </div>
@@ -32,6 +32,13 @@ export default {
 
 
 <style lang="scss" scoped>
+.my-flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .col {
   position: relative;
   background-color: #f6f6f6;
@@ -40,8 +47,8 @@ export default {
 }
 
 img {
-  min-width: 306px;
-  min-height: 306px;
+  width: 306px;
+  height: 306px;
   border: 3px solid black;
   border-radius: 50%;
   position: relative;
@@ -52,13 +59,14 @@ img {
 img:hover {
   opacity: 0;
   transform: rotate(360deg);
+  border: 3px solid white;
 }
 
 .image-wrapper {
   width: 300px;
   height: 300px;
   top: 0;
-  left: 5%;
+  /* left: 5%; */
   position: absolute;
   border: 0;
   border-radius: 50%;
@@ -71,11 +79,12 @@ img:hover {
 }
 
 .info {
+  width: 100%;
   height: 150px;
   border: 3px solid black;
   background-color: #0bafc7;
   &:hover{
-    border: 3px solid #c0d960;
+    box-shadow: 0px 0px 5px 5px #c0d960 inset;
     color: #c0d960;
   }
 }
