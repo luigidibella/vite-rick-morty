@@ -23,6 +23,17 @@ methods: {
     this.store.pageInfo.counter = 1;
     this.$emit('startSearch');
     this.character = '';
+    this.selected = '';
+  },
+
+  resetSearch(){
+    this.store.queryParams= {
+      page: 1,
+      name: '',
+      status: '',
+    }
+    this.store.pageInfo.counter = 1;
+    this.$emit('startSearch');
   }
 },
 
@@ -72,7 +83,7 @@ mounted() {
 
         <button @click="startSearch" type="button" class="btn btn-success mx-2">Search</button>
 
-        <button type="button" class="btn btn-danger mx-2">Reset</button>
+        <button @click="resetSearch" type="button" class="btn btn-danger mx-2">Reset</button>
 
       </div>
     </div>
